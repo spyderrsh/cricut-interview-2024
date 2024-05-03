@@ -1,5 +1,9 @@
 package com.spyderrsh.cricut.binarytree
 
+/**
+ * An ordered (but unbalanced) binary tree that can be searched quickly to find if the given value is present
+ * using [contains]
+ */
 class BinarySearchTree : BinaryTree {
     override var root: BinaryNode? = null
         private set
@@ -20,6 +24,11 @@ class BinarySearchTree : BinaryTree {
     override fun count(): Int {
         return root.count()
     }
+
+    /**
+     * @return true if the given value is present in the tree, false otherwise
+     */
+    fun contains(value: Int): Boolean = root.contains(value)
 
     private fun BinaryNode.remove(value: Int, parent: BinaryNode? = null): Boolean {
         // Check if this node is being removed
@@ -66,6 +75,15 @@ class BinarySearchTree : BinaryTree {
             right?.insert(value) ?: run { right = value }
         } else {
             left?.insert(value) ?: run { left = value }
+        }
+    }
+
+    private fun BinaryNode?.contains(value: Int): Boolean {
+        return when {
+            this == null -> false
+            this.value == value -> true
+            this.value < value -> right.contains(value)
+            else -> left.contains(value)
         }
     }
 

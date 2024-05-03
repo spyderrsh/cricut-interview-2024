@@ -554,4 +554,46 @@ class BinarySearchTreeTest {
         assertEquals(9, underTest.root!!.left!!.right!!.right!!.value)
         assertEquals(9, underTest.count())
     }
+
+    @Test
+    fun `test contains`() {
+        underTest.insert(10)
+        underTest.insert(12)
+        underTest.insert(11)
+        underTest.insert(13)
+        underTest.insert(5)
+        underTest.insert(1)
+        underTest.insert(6)
+        underTest.insert(8)
+        underTest.insert(7)
+        underTest.insert(9)
+
+        // Expected:
+        //     10
+        //    /  \
+        //   5    12
+        //  / \  /  \
+        // 1   6 11  13
+        //      \
+        //       8
+        //      / \
+        //     7   9
+
+        assertTrue(underTest.contains(9))
+        assertTrue(underTest.contains(8))
+        assertTrue(underTest.contains(6))
+        assertTrue(underTest.contains(11))
+        assertTrue(underTest.contains(1))
+        assertTrue(underTest.contains(5))
+        assertTrue(underTest.contains(13))
+        assertTrue(underTest.contains(12))
+        assertTrue(underTest.contains(10))
+
+        assertFalse(underTest.contains(2))
+        assertFalse(underTest.contains(3))
+        assertFalse(underTest.contains(4))
+        assertFalse(underTest.contains(14))
+        assertFalse(underTest.contains(15))
+        assertFalse(underTest.contains(16))
+    }
 }
