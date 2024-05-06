@@ -3,3 +3,4 @@ plugins {
 }
 include("binary-tree")
 include("imfs")
+include("tictactoeanalyzer")
